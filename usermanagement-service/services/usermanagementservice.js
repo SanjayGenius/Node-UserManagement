@@ -56,7 +56,7 @@ function getHashPassword(password){
     })
 }
 function sendEmail(loginId){
-    var activationMailId="http://10.10.1.150:8098/activateLoginId?loginId="+loginId
+    var activationMailId="http://localhost:8098/activateLoginId?loginId="+loginId
     let mailOptions = {
         from: '"E2 Infosystems" <sanjaysingh.b@e2infosystems.com>', // sender address
         to: loginId, // list of receivers
