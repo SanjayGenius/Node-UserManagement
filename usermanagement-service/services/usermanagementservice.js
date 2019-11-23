@@ -9,7 +9,8 @@ module.exports =  {
     getHashPassword:getHashPassword,
     sendEmail:sendEmail,
     addCustomerDetails:addCustomerDetails,
-    addAccountDetails:addAccountDetails
+    addAccountDetails:addAccountDetails,
+    updatePassword:updatePassword
 }
 function getAccountDetails(req){
     var url="getAccountDetails?accountId="+req.query.accountId
@@ -85,5 +86,20 @@ function addAccountDetails(req){
         return response;
     });
 }
+function updatePassword(req){
+    var url="updatePassword";
+    return getHashPassword(req.body.password).then(function(passwordResponse){
+        req.body.password=passwordResponse;
+        return request.sendpostrequest(url,req.body).then(function(userResponse){
+            if(userResponse.status==="Success"){
+                sendEmail(req.body.loginId);
+                    return userResponse
+            }else{
+                return userResponse;
+            }
+        });
+    })
+}
+
 
 

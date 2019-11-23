@@ -60,6 +60,16 @@ var appRouter = function(app) {
             })
         }
     })
+    app.post("/updatePassword",function(req,res){
+        if(req.body.loginId===undefined||req.body.password===undefined){
+            res.status(400);
+            res.send('Params missing');
+        }else{
+            userservice.updatePassword(req).then(function(response){
+                res.send(response);
+            })
+        }
+    })
 }
 
 module.exports = appRouter
